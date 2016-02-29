@@ -1,5 +1,6 @@
 package com.thoughtworks;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -29,6 +30,59 @@ public class ShoppingList {
         }
 
         sb.deleteCharAt(sb.length() - 1);
+
+        return sb.toString();
+    }
+
+    public String printGiftItemList() {
+        if (getItems().isEmpty()) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("买二赠一商品：\n");
+
+        for (Item item : getItems()) {
+            if (item.hasGift()) {
+                sb.append("名称：").append(item.getName()).append("，");
+                sb.append("数量：").append(1).append(item.getUnit());
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public String printTotalPrice() {
+        Double totalPrice = 0.0;
+
+        for (Item item : getItems()) {
+            totalPrice += item.calculateSubtotal();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        if (totalPrice > 0.0) {
+            sb.append("总计：").append(df.format(totalPrice)).append("(元)");
+        }
+
+        return sb.toString();
+    }
+
+    public String printTotalCutDown() {
+        Double totalCutDown = 0.0;
+
+        for (Item item : getItems()) {
+            totalCutDown += item.calculateCutDown();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        if (totalCutDown > 0.0) {
+            sb.append("节省：").append(df.format(totalCutDown)).append("(元)");
+        }
 
         return sb.toString();
     }

@@ -26,6 +26,7 @@ public class ShoppingListTest {
         cocaCola.setCount(3);
         cocaCola.setUnit("瓶");
         cocaCola.setPrice(3.00);
+        cocaCola.setHasGift(true);
         items.add(cocaCola);
 
         Item apple = new Item();
@@ -50,21 +51,21 @@ public class ShoppingListTest {
 
     @Test
     public void should_print_item_list() {
-        assertThat(shoppingList.printItemList(), is("名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：9.00(元)\n名称：苹果，数量：2斤，单价：5.50(元)，小计：11.00(元)"));
+        assertThat(shoppingList.printItemList(), is("名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)\n名称：苹果，数量：2斤，单价：5.50(元)，小计：11.00(元)"));
     }
 
     @Test
     public void should_print_gift_item_list() {
-
+        assertThat(shoppingList.printGiftItemList(), is("买二赠一商品：\n名称：可口可乐，数量：1瓶"));
     }
 
     @Test
     public void should_print_total_price() {
-
+        assertThat(shoppingList.printTotalPrice(), is("总计：17.00(元)"));
     }
 
     @Test
     public void should_print_total_cut_down() {
-        
+        assertThat(shoppingList.printTotalCutDown(), is("节省：3.00(元)"));
     }
 }
