@@ -47,8 +47,6 @@ public class ShoppingList {
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("买二赠一商品：\n");
-
         for (Item item : getItems()) {
             if (item.hasGift()) {
                 sb.append("名称：").append(item.getName()).append("，");
@@ -57,7 +55,11 @@ public class ShoppingList {
             }
         }
 
-        return sb.toString();
+        if (sb.length() == 0) {
+            return "";
+        }
+
+        return delimiter() + "买二赠一商品：\n" + sb.toString();
     }
 
     public String totalPrice() {
@@ -99,7 +101,6 @@ public class ShoppingList {
 
         sb.append(header());
         sb.append(itemList());
-        sb.append(delimiter());
         sb.append(giftItemList());
         sb.append(delimiter());
         sb.append(totalPrice());
