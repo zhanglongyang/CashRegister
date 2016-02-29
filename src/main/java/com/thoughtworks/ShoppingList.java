@@ -17,11 +17,19 @@ public class ShoppingList {
         return items;
     }
 
-    public String printHeader() {
-        return "***<没钱赚商店>购物清单***";
+    public String header() {
+        return "***<没钱赚商店>购物清单***\n";
     }
 
-    public String printItemList() {
+    public String delimiter() {
+        return "----------------------\n";
+    }
+
+    public String footer() {
+        return "**********************";
+    }
+
+    public String itemList() {
         StringBuilder sb = new StringBuilder();
 
         for (Item item : getItems()) {
@@ -29,12 +37,10 @@ public class ShoppingList {
             sb.append("\n");
         }
 
-        sb.deleteCharAt(sb.length() - 1);
-
         return sb.toString();
     }
 
-    public String printGiftItemList() {
+    public String giftItemList() {
         if (getItems().isEmpty()) {
             return "";
         }
@@ -47,13 +53,14 @@ public class ShoppingList {
             if (item.hasGift()) {
                 sb.append("名称：").append(item.getName()).append("，");
                 sb.append("数量：").append(1).append(item.getUnit());
+                sb.append("\n");
             }
         }
 
         return sb.toString();
     }
 
-    public String printTotalPrice() {
+    public String totalPrice() {
         Double totalPrice = 0.0;
 
         for (Item item : getItems()) {
@@ -64,13 +71,13 @@ public class ShoppingList {
         DecimalFormat df = new DecimalFormat("0.00");
 
         if (totalPrice > 0.0) {
-            sb.append("总计：").append(df.format(totalPrice)).append("(元)");
+            sb.append("总计：").append(df.format(totalPrice)).append("(元)\n");
         }
 
         return sb.toString();
     }
 
-    public String printTotalCutDown() {
+    public String totalCutDown() {
         Double totalCutDown = 0.0;
 
         for (Item item : getItems()) {
@@ -81,8 +88,23 @@ public class ShoppingList {
         DecimalFormat df = new DecimalFormat("0.00");
 
         if (totalCutDown > 0.0) {
-            sb.append("节省：").append(df.format(totalCutDown)).append("(元)");
+            sb.append("节省：").append(df.format(totalCutDown)).append("(元)\n");
         }
+
+        return sb.toString();
+    }
+
+    public String allInformation() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(header());
+        sb.append(itemList());
+        sb.append(delimiter());
+        sb.append(giftItemList());
+        sb.append(delimiter());
+        sb.append(totalPrice());
+        sb.append(totalCutDown());
+        sb.append(footer());
 
         return sb.toString();
     }
