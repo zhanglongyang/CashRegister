@@ -56,7 +56,7 @@ public class ShoppingListTest {
 
     @Test
     public void should_print_gift_item_list() {
-        assertThat(shoppingList.giftItemList(), is("买二赠一商品：\n名称：可口可乐，数量：1瓶\n"));
+        assertThat(shoppingList.giftItemList(), is("----------------------\n买二赠一商品：\n名称：可口可乐，数量：1瓶\n"));
     }
 
     @Test

@@ -89,7 +89,7 @@ public class Item {
             return getPrice() * getCount() * DISCOUNT / 100;
         }
 
-        return getPrice() * getCount() * 100 / 100;
+        return getPrice() * getCount();
     }
 
     public Double calculateCutDown() {
