@@ -70,10 +70,9 @@ public class ShoppingList {
         }
 
         StringBuilder sb = new StringBuilder();
-        DecimalFormat df = new DecimalFormat("0.00");
 
         if (totalPrice > 0.0) {
-            sb.append("总计：").append(df.format(totalPrice)).append("(元)\n");
+            sb.append("总计：").append(new PriceFormatter("0.00").format(totalPrice)).append("(元)\n");
         }
 
         return sb.toString();
@@ -87,10 +86,9 @@ public class ShoppingList {
         }
 
         StringBuilder sb = new StringBuilder();
-        DecimalFormat df = new DecimalFormat("0.00");
 
         if (totalCutDown > 0.0) {
-            sb.append("节省：").append(df.format(totalCutDown)).append("(元)\n");
+            sb.append("节省：").append(new PriceFormatter("0.00").format(totalCutDown)).append("(元)\n");
         }
 
         return sb.toString();

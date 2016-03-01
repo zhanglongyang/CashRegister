@@ -126,7 +126,7 @@ public class Main {
 
         Item badminton = new Item();
         badminton.setName("羽毛球");
-        badminton.setCount(5);
+        badminton.setCount(6);
         badminton.setUnit("个");
         badminton.setPrice(1.00);
         badminton.setHasGift(true);

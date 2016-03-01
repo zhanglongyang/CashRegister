@@ -99,15 +99,16 @@ public class Item {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        DecimalFormat df = new DecimalFormat("0.00");
+        PriceFormatter formatter = new PriceFormatter("0.00");
+
         sb.append("名称：").append(getName()).append("，");
         sb.append("数量：").append(getCount()).append(getUnit()).append("，");
-        sb.append("单价：").append(df.format(getPrice())).append("(元)").append("，");
-        sb.append("小计：").append(df.format(calculateSubtotal())).append("(元)");
+        sb.append("单价：").append(formatter.format(getPrice())).append("(元)").append("，");
+        sb.append("小计：").append(formatter.format(calculateSubtotal())).append("(元)");
 
         if(hasDiscount()) {
             sb.append("，");
-            sb.append("节省").append(df.format(calculateCutDown())).append("(元)");
+            sb.append("节省").append(formatter.format(calculateCutDown())).append("(元)");
         }
 
         return sb.toString();
