@@ -1,6 +1,7 @@
 package com.thoughtworks;
 
-import java.text.DecimalFormat;
+import com.thoughtworks.util.PriceFormatter;
+
 import java.util.List;
 
 /**

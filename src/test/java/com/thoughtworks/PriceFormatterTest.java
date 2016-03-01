@@ -1,5 +1,6 @@
 package com.thoughtworks;
 
+import com.thoughtworks.util.PriceFormatter;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
