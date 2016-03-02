@@ -1,20 +1,20 @@
 package com.thoughtworks;
 
-import com.thoughtworks.util.PriceFormatter;
+import com.thoughtworks.utils.PriceFormatter;
 
 import java.util.List;
 
 /**
  * Created by lyzhang on 2/28/16.
  */
-public class ShoppingList {
-    private List<Item> items;
+public class Receipt {
+    private List<PurchasedItem> items;
 
-    public void setItems(List<Item> items) {
+    public void setItems(List<PurchasedItem> items) {
         this.items = items;
     }
 
-    public List<Item> getItems() {
+    public List<PurchasedItem> getItems() {
         return items;
     }
 
@@ -33,7 +33,7 @@ public class ShoppingList {
     public String itemList() {
         StringBuilder sb = new StringBuilder();
 
-        for (Item item : getItems()) {
+        for (PurchasedItem item : getItems()) {
             sb.append(item.toString());
             sb.append("\n");
         }
@@ -48,7 +48,7 @@ public class ShoppingList {
 
         StringBuilder sb = new StringBuilder();
 
-        for (Item item : getItems()) {
+        for (PurchasedItem item : getItems()) {
             if (item.hasGift()) {
                 sb.append("名称：").append(item.getName()).append("，");
                 sb.append("数量：").append(1).append(item.getUnit());
@@ -66,7 +66,7 @@ public class ShoppingList {
     public String totalPrice() {
         Double totalPrice = 0.0;
 
-        for (Item item : getItems()) {
+        for (PurchasedItem item : getItems()) {
             totalPrice += item.calculateSubtotal();
         }
 
@@ -79,23 +79,23 @@ public class ShoppingList {
         return sb.toString();
     }
 
-    public String totalCutDown() {
-        Double totalCutDown = 0.0;
+    public String totalSaving() {
+        Double totalSaving = 0.0;
 
-        for (Item item : getItems()) {
-            totalCutDown += item.calculateCutDown();
+        for (PurchasedItem item : getItems()) {
+            totalSaving += item.calculateSaving();
         }
 
         StringBuilder sb = new StringBuilder();
 
-        if (totalCutDown > 0.0) {
-            sb.append("节省：").append(new PriceFormatter("0.00").format(totalCutDown)).append("(元)\n");
+        if (totalSaving > 0.0) {
+            sb.append("节省：").append(new PriceFormatter("0.00").format(totalSaving)).append("(元)\n");
         }
 
         return sb.toString();
     }
 
-    public String allInformation() {
+    public String allInfo() {
         StringBuilder sb = new StringBuilder();
 
         sb.append(header());
@@ -103,7 +103,7 @@ public class ShoppingList {
         sb.append(giftItemList());
         sb.append(delimiter());
         sb.append(totalPrice());
-        sb.append(totalCutDown());
+        sb.append(totalSaving());
         sb.append(footer());
 
         return sb.toString();

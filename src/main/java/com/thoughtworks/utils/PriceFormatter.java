@@ -1,4 +1,4 @@
-package com.thoughtworks.util;
+package com.thoughtworks.utils;
 
 import java.text.DecimalFormat;
 

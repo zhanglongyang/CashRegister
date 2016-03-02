@@ -1,4 +1,4 @@
-package com.thoughtworks;
+package com.thoughtworks.models;
 
 import org.junit.Test;
 

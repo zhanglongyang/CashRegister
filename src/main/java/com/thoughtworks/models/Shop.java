@@ -1,4 +1,4 @@
-package com.thoughtworks;
+package com.thoughtworks.models;
 
 /**
  * Created by lyzhang on 2/28/16.
