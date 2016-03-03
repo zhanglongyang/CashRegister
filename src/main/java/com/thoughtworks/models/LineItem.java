@@ -54,7 +54,7 @@ public class LineItem {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        PriceFormatter formatter = new PriceFormatter("0.00");
+        PriceFormatter formatter = new PriceFormatter();
 
         sb.append("名称：").append(getName()).append("，");
         sb.append("数量：").append(getCount()).append(getUnit()).append("，");

@@ -80,7 +80,7 @@ public class Receipt {
         StringBuilder sb = new StringBuilder();
 
         if (totalPrice > 0.0) {
-            sb.append("总计：").append(new PriceFormatter("0.00").format(totalPrice)).append("(元)\n");
+            sb.append("总计：").append(new PriceFormatter().format(totalPrice)).append("(元)\n");
         }
 
         return sb.toString();
@@ -96,7 +96,7 @@ public class Receipt {
         StringBuilder sb = new StringBuilder();
 
         if (totalSaving > 0.0) {
-            sb.append("节省：").append(new PriceFormatter("0.00").format(totalSaving)).append("(元)\n");
+            sb.append("节省：").append(new PriceFormatter().format(totalSaving)).append("(元)\n");
         }
 
         return sb.toString();

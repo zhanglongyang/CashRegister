@@ -6,7 +6,12 @@ import java.text.DecimalFormat;
  * Created by lyzhang on 3/1/16.
  */
 public class PriceFormatter {
+    private static final String DEFAULT_FORMAT = "0.00";
     private final String format;
+
+    public PriceFormatter() {
+        this.format = DEFAULT_FORMAT;
+    }
 
     public PriceFormatter(String format) {
         this.format = format;
