@@ -14,7 +14,8 @@ public class Item {
     private Boolean hasGift;
     private Double rate;
 
-    public Item() {}
+    public Item() {
+    }
 
     public Item(String barCode, String name, String unit, Double price) {
         setBarCode(barCode);

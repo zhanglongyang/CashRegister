@@ -56,7 +56,7 @@ public class LineItem {
         sb.append("单价：").append(formatter.format(item.getPrice())).append("(元)").append("，");
         sb.append("小计：").append(formatter.format(calculateSubtotal())).append("(元)");
 
-        if(item.hasDiscount()) {
+        if (item.hasDiscount()) {
             sb.append("，");
             sb.append("节省").append(formatter.format(calculateSaving())).append("(元)");
         }

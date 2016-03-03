@@ -8,7 +8,8 @@ import java.util.List;
 public class Receipt extends Template {
     private List<LineItem> items;
 
-    public Receipt() {}
+    public Receipt() {
+    }
 
     public Receipt(List<LineItem> items) {
         this.items = items;

@@ -2,8 +2,11 @@ package com.thoughtworks.receipt;
 
 public abstract class Template {
     public abstract String lineItemsSection();
+
     public abstract String giftItemsSection();
+
     public abstract String totalPrice();
+
     public abstract String totalSaving();
 
     public String header() {
