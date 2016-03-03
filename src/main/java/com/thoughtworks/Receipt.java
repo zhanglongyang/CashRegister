@@ -95,7 +95,7 @@ public class Receipt {
         return sb.toString();
     }
 
-    public String allInfo() {
+    public String info() {
         StringBuilder sb = new StringBuilder();
 
         sb.append(header());

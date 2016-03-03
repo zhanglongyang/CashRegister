@@ -12,19 +12,23 @@ import java.util.*;
  * Created by lyzhang on 3/2/16.
  */
 public class ItemsLoader {
-    public List<PurchasedItem> load(List<String> items) {
+    private static final String INPUT_SEPARATOR = "-";
+    private static final String CONFIG_SEPARATOR = ".";
+    private static final String PREFIX = "Item";
+
+    public List<PurchasedItem> load(List<String> items, String resource) {
         Map<String, Integer> purchasedItemsWithCount = parseInput(items);
 
         List<PurchasedItem> purchasedItems = new ArrayList<>();
         try {
             Properties properties = new Properties();
-            properties.load(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("items.properties"), "UTF-8"));
+            properties.load(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(resource), "UTF-8"));
 
             for (String barCode : purchasedItemsWithCount.keySet()) {
                 Item item = new Item();
 
                 for (Field f : Item.class.getDeclaredFields()) {
-                    Object o = properties.getProperty("Item." + barCode + "." + f.getName());
+                    Object o = properties.getProperty(PREFIX + CONFIG_SEPARATOR + barCode + CONFIG_SEPARATOR + f.getName());
                     if (o != null) {
                         Method m = item.getClass().getMethod("set" + capitalize(f.getName()), o.getClass());
 
@@ -49,16 +53,16 @@ public class ItemsLoader {
         for (String item : purchasedItems) {
             String key = item;
             Integer count = 1;
-            if (item.contains("-")) {
-                key = item.split("-")[0];
-                count = Integer.valueOf(item.split("-")[1]);
+            if (item.contains(INPUT_SEPARATOR)) {
+                key = item.split(INPUT_SEPARATOR)[0];
+                count = Integer.valueOf(item.split(INPUT_SEPARATOR)[1]);
             }
 
             if (purchasedItemMap.containsKey(key)) {
-                purchasedItemMap.put(key, purchasedItemMap.get(key) + count);
-            } else {
-                purchasedItemMap.put(key, count);
+                count += purchasedItemMap.get(key);
             }
+
+            purchasedItemMap.put(key, count);
         }
 
         return purchasedItemMap;

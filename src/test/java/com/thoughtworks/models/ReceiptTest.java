@@ -69,7 +69,7 @@ public class ReceiptTest {
 
     @Test
     public void should_print_all_information() {
-        assertThat(receipt.allInfo(),
+        assertThat(receipt.info(),
                 is("" +
                         "***<没钱赚商店>购物清单***\n" +
                         "名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)\n" +

@@ -19,9 +19,9 @@ public class Main {
         items.add("ITEM000003");
 
         Receipt receipt = new Receipt();
-        List<PurchasedItem> purchasedItems = new ItemsLoader().load(items);
+        List<PurchasedItem> purchasedItems = new ItemsLoader().load(items, "items.properties");
         receipt.setItems(purchasedItems);
 
-        System.out.println(receipt.allInfo());
+        System.out.println(receipt.info());
     }
 }
