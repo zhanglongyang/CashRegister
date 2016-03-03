@@ -17,7 +17,7 @@ public class ReceiptTest {
 
     @Before
     public void setup() {
-        receipt = new Receipt();
+        receipt = new Receipt(new Shop("没钱赚商店"));
 
         items = new ArrayList<>();
         item = new Item("ITEM000001", "可口可乐", "瓶", 3.00);

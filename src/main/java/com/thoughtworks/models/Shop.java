@@ -3,7 +3,7 @@ package com.thoughtworks.models;
 public class Shop {
     private String name;
 
-    public void setName(String name) {
+    public Shop(String name) {
         this.name = name;
     }
 

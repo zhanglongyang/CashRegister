@@ -1,17 +1,17 @@
 package com.thoughtworks;
 
 import com.thoughtworks.models.LineItem;
+import com.thoughtworks.models.Shop;
 import com.thoughtworks.utils.PriceFormatter;
 
 import java.util.List;
 
 public class Receipt {
     private List<LineItem> items;
+    private Shop shop;
 
-    public Receipt(){}
-
-    public Receipt(List<LineItem> items) {
-        this.items = items;
+    public Receipt(Shop shop) {
+        this.shop = shop;
     }
 
     public void setItems(List<LineItem> items) {
@@ -23,7 +23,7 @@ public class Receipt {
     }
 
     public String header() {
-        return "***<没钱赚商店>购物清单***\n";
+        return "***<" + shop.getName() + ">购物清单***\n";
     }
 
     public String delimiter() {
