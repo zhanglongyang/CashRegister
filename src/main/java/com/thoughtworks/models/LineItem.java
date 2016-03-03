@@ -1,18 +1,17 @@
-package com.thoughtworks;
+package com.thoughtworks.models;
 
-import com.thoughtworks.models.Item;
 import com.thoughtworks.utils.PriceFormatter;
 
 /**
  * Created by lyzhang on 3/2/16.
  */
-public class PurchasedItem {
+public class LineItem {
     private static final Integer DISCOUNT = 95;
 
     private Item item;
     private Integer count;
 
-    public PurchasedItem(Item item) {
+    public LineItem(Item item) {
         this.item = item;
     }
 
@@ -48,6 +47,10 @@ public class PurchasedItem {
         return item.getUnit();
     }
 
+    public boolean hasGift() {
+        return item.hasGift();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -64,9 +67,5 @@ public class PurchasedItem {
         }
 
         return sb.toString();
-    }
-
-    public boolean hasGift() {
-        return item.hasGift();
     }
 }

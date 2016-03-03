@@ -1,5 +1,6 @@
 package com.thoughtworks;
 
+import com.thoughtworks.models.LineItem;
 import com.thoughtworks.utils.PriceFormatter;
 
 import java.util.List;
@@ -8,19 +9,19 @@ import java.util.List;
  * Created by lyzhang on 2/28/16.
  */
 public class Receipt {
-    private List<PurchasedItem> items;
+    private List<LineItem> items;
 
     public Receipt(){}
 
-    public Receipt(List<PurchasedItem> items) {
+    public Receipt(List<LineItem> items) {
         this.items = items;
     }
 
-    public void setItems(List<PurchasedItem> items) {
+    public void setItems(List<LineItem> items) {
         this.items = items;
     }
 
-    public List<PurchasedItem> getItems() {
+    public List<LineItem> getItems() {
         return items;
     }
 
@@ -39,7 +40,7 @@ public class Receipt {
     public String itemList() {
         StringBuilder sb = new StringBuilder();
 
-        for (PurchasedItem item : getItems()) {
+        for (LineItem item : getItems()) {
             sb.append(item.toString());
             sb.append("\n");
         }
@@ -54,7 +55,7 @@ public class Receipt {
 
         StringBuilder sb = new StringBuilder();
 
-        for (PurchasedItem item : getItems()) {
+        for (LineItem item : getItems()) {
             if (item.hasGift()) {
                 sb.append("名称：").append(item.getName()).append("，");
                 sb.append("数量：").append(1).append(item.getUnit());
@@ -72,7 +73,7 @@ public class Receipt {
     public String totalPrice() {
         Double totalPrice = 0.0;
 
-        for (PurchasedItem item : getItems()) {
+        for (LineItem item : getItems()) {
             totalPrice += item.calculateSubtotal();
         }
 
@@ -88,7 +89,7 @@ public class Receipt {
     public String totalSaving() {
         Double totalSaving = 0.0;
 
-        for (PurchasedItem item : getItems()) {
+        for (LineItem item : getItems()) {
             totalSaving += item.calculateSaving();
         }
 

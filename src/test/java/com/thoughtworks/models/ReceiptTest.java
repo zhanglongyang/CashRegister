@@ -1,6 +1,5 @@
 package com.thoughtworks.models;
 
-import com.thoughtworks.PurchasedItem;
 import com.thoughtworks.Receipt;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +15,7 @@ import static org.junit.Assert.assertThat;
  */
 public class ReceiptTest {
     Receipt receipt;
-    List<PurchasedItem> items;
+    List<LineItem> items;
     private Item item;
 
     @Before
@@ -26,11 +25,11 @@ public class ReceiptTest {
         items = new ArrayList<>();
         item = new Item("ITEM000001", "可口可乐", "瓶", 3.00);
         item.setHasGift(true);
-        PurchasedItem cocaCola = new PurchasedItem(item);
+        LineItem cocaCola = new LineItem(item);
         cocaCola.setCount(3);
         items.add(cocaCola);
 
-        PurchasedItem apple = new PurchasedItem(new Item("ITEM000002", "苹果", "斤", 5.50));
+        LineItem apple = new LineItem(new Item("ITEM000002", "苹果", "斤", 5.50));
         apple.setCount(2);
         items.add(apple);
 

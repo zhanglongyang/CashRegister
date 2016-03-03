@@ -2,8 +2,8 @@ package com.thoughtworks.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.thoughtworks.PurchasedItem;
 import com.thoughtworks.models.Item;
+import com.thoughtworks.models.LineItem;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,10 +19,10 @@ public class ItemsLoader {
     private static final String CONFIG_SEPARATOR = ".";
     private static final String PREFIX = "Item";
 
-    public List<PurchasedItem> load(String input, String resource) {
+    public List<LineItem> load(String input, String resource) {
         Map<String, Integer> purchasedItemsWithCount = parseInput(input);
 
-        List<PurchasedItem> purchasedItems = new ArrayList<>();
+        List<LineItem> lineItems = new ArrayList<>();
         try {
             Properties properties = new Properties();
             properties.load(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(resource), "UTF-8"));
@@ -39,15 +39,15 @@ public class ItemsLoader {
                     }
                 }
 
-                PurchasedItem purchasedItem = new PurchasedItem(item);
-                purchasedItem.setCount(purchasedItemsWithCount.get(barCode));
-                purchasedItems.add(purchasedItem);
+                LineItem lineItem = new LineItem(item);
+                lineItem.setCount(purchasedItemsWithCount.get(barCode));
+                lineItems.add(lineItem);
             }
         } catch (Exception e) {
             System.out.println("Something wrong when loading items.");
         }
 
-        return purchasedItems;
+        return lineItems;
     }
 
     private Map<String, Integer> parseInput(String json) {
