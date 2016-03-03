@@ -1,6 +1,7 @@
 package com.thoughtworks.models;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by lyzhang on 2/25/16.
