@@ -19,5 +19,6 @@
         <unit>斤</unit>
         <price>5.50</price>
         <hasDiscount>true</hasDiscount>
+        <rate>0.95</rate>
     </item>
 </items>

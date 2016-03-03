@@ -3,9 +3,6 @@ package com.thoughtworks.models;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * Created by lyzhang on 2/25/16.
- */
 @XmlRootElement
 public class Item {
 
@@ -15,7 +12,7 @@ public class Item {
     private Double price;
 
     private Boolean hasGift;
-    private Boolean hasDiscount;
+    private Double rate;
 
     public Item() {}
 
@@ -76,24 +73,24 @@ public class Item {
     }
 
     public Boolean hasDiscount() {
-        if (hasDiscount == null) {
-            hasDiscount = false;
-        }
-
-        return hasDiscount;
+        return getRate() < 1.0;
     }
 
-    public void setHasDiscount(Boolean hasDiscount) {
-        this.hasDiscount = hasDiscount;
+    public Double getRate() {
+        if (this.rate == null) {
+            this.rate = 1.0;
+        }
+
+        return this.rate;
+    }
+
+    @XmlElement
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 
     @XmlElement
     public void setHasGift(String hasGift) {
         this.hasGift = hasGift != null && hasGift.equals("true") ? true : false;
-    }
-
-    @XmlElement
-    public void setHasDiscount(String hasDiscount) {
-        this.hasDiscount = hasDiscount != null && hasDiscount.equals("true") ? true : false;
     }
 }

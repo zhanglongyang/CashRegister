@@ -15,9 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by lyzhang on 3/2/16.
- */
 public class ItemsLoader {
     private static final String INPUT_SEPARATOR = "-";
 

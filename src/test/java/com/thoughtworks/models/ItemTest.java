@@ -6,9 +6,6 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by lyzhang on 2/25/16.
- */
 public class ItemTest {
     Item item;
 
@@ -50,12 +47,5 @@ public class ItemTest {
         item.setHasGift(true);
 
         assertThat(item.hasGift(), is(true));
-    }
-
-    @Test
-    public void item_should_identify_whether_has_discount() {
-        item.setHasDiscount(false);
-
-        assertThat(item.hasDiscount(), is(false));
     }
 }

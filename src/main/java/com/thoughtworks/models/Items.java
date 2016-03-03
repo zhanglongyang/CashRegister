@@ -7,9 +7,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by lyzhang on 3/3/16.
- */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Items {

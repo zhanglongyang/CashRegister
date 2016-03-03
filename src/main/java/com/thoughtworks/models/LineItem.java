@@ -2,12 +2,7 @@ package com.thoughtworks.models;
 
 import com.thoughtworks.utils.PriceFormatter;
 
-/**
- * Created by lyzhang on 3/2/16.
- */
 public class LineItem {
-    private static final Integer DISCOUNT = 95;
-
     private Item item;
     private Integer count;
 
@@ -29,7 +24,7 @@ public class LineItem {
         }
 
         if (item.hasDiscount()) {
-            return item.getPrice() * getCount() * DISCOUNT / 100;
+            return item.getPrice() * getCount() * item.getRate();
         }
 
         return item.getPrice() * getCount();

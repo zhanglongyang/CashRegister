@@ -5,12 +5,10 @@ import com.thoughtworks.models.LineItem;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.Is.*;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by lyzhang on 3/2/16.
- */
 public class LineItemTest {
     LineItem lineItem;
     Item item;
@@ -45,7 +43,6 @@ public class LineItemTest {
     @Test
     public void subtotal_should_be_triple_price_when_count_is_3_and_without_discount_and_gift() {
         item.setHasGift(false);
-        item.setHasDiscount(false);
         lineItem = new LineItem(item);
 
         lineItem.setCount(3);
@@ -65,17 +62,16 @@ public class LineItemTest {
 
     @Test
     public void subtotal_should_be_subtract_discount_when_has_discount() {
-        item.setHasDiscount(true);
+        item.setRate(0.95);
         lineItem = new LineItem(item);
 
         lineItem.setCount(2);
 
-        assertThat(lineItem.calculateSubtotal(), is(5.70));
+        assertEquals(lineItem.calculateSubtotal(), 5.70, 0.0001);
     }
 
     @Test
     public void gift_should_have_higher_priority_when_both_gift_and_discount() {
-        item.setHasDiscount(true);
         item.setHasGift(true);
         lineItem = new LineItem(item);
 
@@ -94,7 +90,7 @@ public class LineItemTest {
     @Test
     public void should_show_as_payment_list_correctly_when_has_discount() {
         item = new Item("ITEM000002", "苹果", "斤", 5.50);
-        item.setHasDiscount(true);
+        item.setRate(0.95);
         lineItem = new LineItem(item);
 
         lineItem.setCount(2);

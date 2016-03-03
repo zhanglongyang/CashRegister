@@ -5,9 +5,6 @@ import com.thoughtworks.utils.PriceFormatter;
 
 import java.util.List;
 
-/**
- * Created by lyzhang on 2/28/16.
- */
 public class Receipt {
     private List<LineItem> items;
 

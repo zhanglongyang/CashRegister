@@ -5,9 +5,6 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by lyzhang on 2/28/16.
- */
 public class ShopTest {
     @Test
     public void shop_should_have_name() {
