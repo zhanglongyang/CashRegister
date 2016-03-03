@@ -1,55 +1,32 @@
 package com.thoughtworks;
 
 import com.thoughtworks.models.LineItem;
-import com.thoughtworks.models.Shop;
 import com.thoughtworks.utils.PriceFormatter;
 
 import java.util.List;
 
-public class Receipt {
+public class Receipt extends Template {
     private List<LineItem> items;
-    private Shop shop;
 
-    public Receipt(Shop shop) {
-        this.shop = shop;
-    }
+    public Receipt() {}
 
-    public void setItems(List<LineItem> items) {
+    public Receipt(List<LineItem> items) {
         this.items = items;
     }
 
-    public List<LineItem> getItems() {
-        return items;
-    }
-
-    public String header() {
-        return "***<" + shop.getName() + ">购物清单***\n";
-    }
-
-    public String delimiter() {
-        return "----------------------\n";
-    }
-
-    public String footer() {
-        return "**********************";
-    }
-
-    public String itemList() {
+    public String lineItemsSection() {
         StringBuilder sb = new StringBuilder();
 
         for (LineItem item : getItems()) {
-            sb.append(item.toString());
-            sb.append("\n");
+            sb.append(item.toString()).append("\n");
         }
+
+        sb.append(delimiter());
 
         return sb.toString();
     }
 
-    public String giftItemList() {
-        if (getItems().isEmpty()) {
-            return "";
-        }
-
+    public String giftItemsSection() {
         StringBuilder sb = new StringBuilder();
 
         for (LineItem item : getItems()) {
@@ -64,7 +41,10 @@ public class Receipt {
             return "";
         }
 
-        return delimiter() + "买二赠一商品：\n" + sb.toString();
+        sb.insert(0, "买二赠一商品：\n");
+        sb.append(delimiter());
+
+        return sb.toString();
     }
 
     public String totalPrice() {
@@ -99,17 +79,12 @@ public class Receipt {
         return sb.toString();
     }
 
-    public String info() {
-        StringBuilder sb = new StringBuilder();
 
-        sb.append(header());
-        sb.append(itemList());
-        sb.append(giftItemList());
-        sb.append(delimiter());
-        sb.append(totalPrice());
-        sb.append(totalSaving());
-        sb.append(footer());
+    public void setItems(List<LineItem> items) {
+        this.items = items;
+    }
 
-        return sb.toString();
+    public List<LineItem> getItems() {
+        return items;
     }
 }

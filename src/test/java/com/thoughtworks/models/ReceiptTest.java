@@ -17,7 +17,7 @@ public class ReceiptTest {
 
     @Before
     public void setup() {
-        receipt = new Receipt(new Shop("没钱赚商店"));
+        receipt = new Receipt();
 
         items = new ArrayList<>();
         item = new Item("ITEM000001", "可口可乐", "瓶", 3.00);
@@ -45,12 +45,18 @@ public class ReceiptTest {
 
     @Test
     public void should_print_item_list() {
-        assertThat(receipt.itemList(), is("名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)\n名称：苹果，数量：2斤，单价：5.50(元)，小计：11.00(元)\n"));
+        assertThat(receipt.lineItemsSection(), is("" +
+                "名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)\n" +
+                "名称：苹果，数量：2斤，单价：5.50(元)，小计：11.00(元)\n" +
+                "----------------------\n"));
     }
 
     @Test
     public void should_print_gift_item_list() {
-        assertThat(receipt.giftItemList(), is("----------------------\n买二赠一商品：\n名称：可口可乐，数量：1瓶\n"));
+        assertThat(receipt.giftItemsSection(), is("" +
+                "买二赠一商品：\n" +
+                "名称：可口可乐，数量：1瓶\n" +
+                "----------------------\n"));
     }
 
     @Test
