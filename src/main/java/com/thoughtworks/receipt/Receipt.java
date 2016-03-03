@@ -1,4 +1,4 @@
-package com.thoughtworks;
+package com.thoughtworks.receipt;
 
 import com.thoughtworks.models.LineItem;
 import com.thoughtworks.utils.PriceFormatter;
@@ -32,7 +32,7 @@ public class Receipt extends Template {
         for (LineItem item : getItems()) {
             if (item.hasGift()) {
                 sb.append("名称：").append(item.getName()).append("，");
-                sb.append("数量：").append(1).append(item.getUnit());
+                sb.append("数量：").append(item.getCount() / 3).append(item.getUnit());
                 sb.append("\n");
             }
         }

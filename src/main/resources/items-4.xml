@@ -1,0 +1,23 @@
+<items>
+    <item>
+        <barCode>ITEM000001</barCode>
+        <name>可口可乐</name>
+        <unit>瓶</unit>
+        <price>3.00</price>
+        <hasGift>true</hasGift>
+    </item>
+    <item>
+        <barCode>ITEM000002</barCode>
+        <name>羽毛球</name>
+        <unit>个</unit>
+        <price>1.00</price>
+        <hasGift>true</hasGift>
+    </item>
+    <item>
+        <barCode>ITEM000003</barCode>
+        <name>苹果</name>
+        <unit>斤</unit>
+        <price>5.50</price>
+        <rate>0.95</rate>
+    </item>
+</items>
