@@ -2,7 +2,6 @@ package com.thoughtworks;
 
 import com.thoughtworks.utils.ItemsLoader;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,17 +9,10 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        List<String> items = new ArrayList<>();
-        items.add("ITEM000001");
-        items.add("ITEM000001");
-        items.add("ITEM000001");
-        items.add("ITEM000002-5");
-        items.add("ITEM000003");
-        items.add("ITEM000003");
+        String input = "[\"ITEM000001\", \"ITEM000001\", \"ITEM000001\", \"ITEM000002-5\", \"ITEM000003\", \"ITEM000003\"]";
 
-        Receipt receipt = new Receipt();
-        List<PurchasedItem> purchasedItems = new ItemsLoader().load(items, "items.properties");
-        receipt.setItems(purchasedItems);
+        List<PurchasedItem> purchasedItems = new ItemsLoader().load(input, "items.properties");
+        Receipt receipt = new Receipt(purchasedItems);
 
         System.out.println(receipt.info());
     }

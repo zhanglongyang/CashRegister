@@ -10,6 +10,12 @@ import java.util.List;
 public class Receipt {
     private List<PurchasedItem> items;
 
+    public Receipt(){}
+
+    public Receipt(List<PurchasedItem> items) {
+        this.items = items;
+    }
+
     public void setItems(List<PurchasedItem> items) {
         this.items = items;
     }

@@ -1,8 +1,11 @@
 package com.thoughtworks.utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.thoughtworks.PurchasedItem;
 import com.thoughtworks.models.Item;
 
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -16,8 +19,8 @@ public class ItemsLoader {
     private static final String CONFIG_SEPARATOR = ".";
     private static final String PREFIX = "Item";
 
-    public List<PurchasedItem> load(List<String> items, String resource) {
-        Map<String, Integer> purchasedItemsWithCount = parseInput(items);
+    public List<PurchasedItem> load(String input, String resource) {
+        Map<String, Integer> purchasedItemsWithCount = parseInput(input);
 
         List<PurchasedItem> purchasedItems = new ArrayList<>();
         try {
@@ -47,10 +50,19 @@ public class ItemsLoader {
         return purchasedItems;
     }
 
-    private Map<String, Integer> parseInput(List<String> purchasedItems) {
+    private Map<String, Integer> parseInput(String json) {
+        ObjectMapper mapper = new ObjectMapper();
+        List<String> items = new ArrayList<>();
+
+        try {
+            items = mapper.readValue(json, TypeFactory.defaultInstance().constructCollectionType(List.class, String.class));
+        } catch (IOException e) {
+            System.out.println("Parsing input json error: " + e.getMessage());
+        }
+
         Map<String, Integer> purchasedItemMap = new HashMap<>();
 
-        for (String item : purchasedItems) {
+        for (String item : items) {
             String key = item;
             Integer count = 1;
             if (item.contains(INPUT_SEPARATOR)) {
