@@ -3,12 +3,15 @@ package com.thoughtworks.utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.thoughtworks.models.Item;
+import com.thoughtworks.models.Items;
 import com.thoughtworks.models.LineItem;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 /**
@@ -16,13 +19,26 @@ import java.util.*;
  */
 public class ItemsLoader {
     private static final String INPUT_SEPARATOR = "-";
-    private static final String CONFIG_SEPARATOR = ".";
-    private static final String PREFIX = "Item";
 
     public List<LineItem> load(String input, String resource) {
         Map<String, Integer> purchasedItemsWithCount = parseInput(input);
-
         List<LineItem> lineItems = new ArrayList<>();
+
+        List<Item> allItems = new ArrayList<>();
+
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Items.class);
+
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            Items itemObjects = (Items) jaxbUnmarshaller.unmarshal(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(resource), "UTF-8"));
+
+            allItems = itemObjects.all();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         try {
             Properties properties = new Properties();
             properties.load(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(resource), "UTF-8"));
@@ -30,12 +46,10 @@ public class ItemsLoader {
             for (String barCode : purchasedItemsWithCount.keySet()) {
                 Item item = new Item();
 
-                for (Field f : Item.class.getDeclaredFields()) {
-                    Object o = properties.getProperty(PREFIX + CONFIG_SEPARATOR + barCode + CONFIG_SEPARATOR + f.getName());
-                    if (o != null) {
-                        Method m = item.getClass().getMethod("set" + capitalize(f.getName()), o.getClass());
-
-                        m.invoke(item, o);
+                for (Item i : allItems) {
+                    if (barCode.equals(i.getBarCode())) {
+                        item = i;
+                        break;
                     }
                 }
 
@@ -78,9 +92,5 @@ public class ItemsLoader {
         }
 
         return purchasedItemMap;
-    }
-
-    private String capitalize(final String line) {
-        return Character.toUpperCase(line.charAt(0)) + line.substring(1);
     }
 }

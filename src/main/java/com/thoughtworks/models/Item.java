@@ -1,8 +1,11 @@
 package com.thoughtworks.models;
 
+import javax.xml.bind.annotation.*;
+
 /**
  * Created by lyzhang on 2/25/16.
  */
+@XmlRootElement
 public class Item {
 
     private String barCode;
@@ -22,6 +25,7 @@ public class Item {
         setPrice(price);
     }
 
+    @XmlElement
     public void setBarCode(String barCode) {
         this.barCode = barCode;
     }
@@ -34,6 +38,7 @@ public class Item {
         return name;
     }
 
+    @XmlElement
     public void setName(String name) {
         this.name = name;
     }
@@ -42,6 +47,7 @@ public class Item {
         return unit;
     }
 
+    @XmlElement
     public void setUnit(String unit) {
         this.unit = unit;
     }
@@ -50,6 +56,7 @@ public class Item {
         return price;
     }
 
+    @XmlElement
     public void setPrice(Double price) {
         this.price = price;
     }
@@ -62,6 +69,7 @@ public class Item {
         return hasGift;
     }
 
+    @XmlElement
     public void setHasGift(Boolean hasGift) {
         this.hasGift = hasGift;
     }
@@ -78,14 +86,12 @@ public class Item {
         this.hasDiscount = hasDiscount;
     }
 
-    public void setPrice(String price) {
-        this.price = Double.valueOf(price);
-    }
-
+    @XmlElement
     public void setHasGift(String hasGift) {
         this.hasGift = hasGift != null && hasGift.equals("true") ? true : false;
     }
 
+    @XmlElement
     public void setHasDiscount(String hasDiscount) {
         this.hasDiscount = hasDiscount != null && hasDiscount.equals("true") ? true : false;
     }
