@@ -1,11 +1,9 @@
-package com.thoughtworks;
+package com.thoughtworks.models;
 
-import com.thoughtworks.models.Item;
-import com.thoughtworks.models.LineItem;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.core.Is.*;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 

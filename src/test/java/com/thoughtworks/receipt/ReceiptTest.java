@@ -1,6 +1,7 @@
-package com.thoughtworks.models;
+package com.thoughtworks.receipt;
 
-import com.thoughtworks.receipt.Receipt;
+import com.thoughtworks.models.Item;
+import com.thoughtworks.models.LineItem;
 import org.junit.Before;
 import org.junit.Test;
 
