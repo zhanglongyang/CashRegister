@@ -10,6 +10,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +54,8 @@ public class ItemsLoader {
             JAXBContext jaxbContext = JAXBContext.newInstance(Items.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Items items = (Items) jaxbUnmarshaller.unmarshal(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(resource), "UTF-8"));
+            Reader reader = new InputStreamReader(getClass().getClassLoader().getResourceAsStream(resource), "UTF-8");
+            Items items = (Items) jaxbUnmarshaller.unmarshal(reader);
 
             itemList = items.all();
         } catch (Exception e) {
