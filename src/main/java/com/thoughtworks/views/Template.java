@@ -1,4 +1,4 @@
-package com.thoughtworks.receipt;
+package com.thoughtworks.views;
 
 public abstract class Template {
     public abstract String lineItemsSection();

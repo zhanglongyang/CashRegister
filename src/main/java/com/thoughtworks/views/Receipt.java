@@ -1,4 +1,4 @@
-package com.thoughtworks.receipt;
+package com.thoughtworks.views;
 
 import com.thoughtworks.models.LineItem;
 import com.thoughtworks.utils.PriceFormatter;

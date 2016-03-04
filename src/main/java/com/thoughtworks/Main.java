@@ -1,7 +1,7 @@
 package com.thoughtworks;
 
 import com.thoughtworks.models.LineItem;
-import com.thoughtworks.receipt.Receipt;
+import com.thoughtworks.views.Receipt;
 import com.thoughtworks.utils.ItemsLoader;
 
 import java.util.List;

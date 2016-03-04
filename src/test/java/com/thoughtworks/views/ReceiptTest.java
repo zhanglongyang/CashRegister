@@ -1,4 +1,4 @@
-package com.thoughtworks.receipt;
+package com.thoughtworks.views;
 
 import com.thoughtworks.models.Item;
 import com.thoughtworks.models.LineItem;
