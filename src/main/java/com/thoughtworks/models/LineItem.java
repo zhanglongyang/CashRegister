@@ -1,5 +1,6 @@
 package com.thoughtworks.models;
 
+import com.thoughtworks.discounts.Discount;
 import com.thoughtworks.utils.PriceFormatter;
 
 public class LineItem {
@@ -19,12 +20,8 @@ public class LineItem {
     }
 
     public Double calculateSubtotal() {
-        if (item.hasGift()) {
-            return (getCount() - getCount() / 3) * item.getPrice();
-        }
-
-        if (item.hasDiscount()) {
-            return item.getPrice() * getCount() * item.getRate();
+        for (Discount discount : item.getDiscounts()) {
+            return discount.subtotal(this);
         }
 
         return item.getPrice() * getCount();
@@ -62,5 +59,9 @@ public class LineItem {
         }
 
         return sb.toString();
+    }
+
+    public double getPrice() {
+        return item.getPrice();
     }
 }

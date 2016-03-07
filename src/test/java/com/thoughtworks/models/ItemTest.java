@@ -46,15 +46,8 @@ public class ItemTest {
     }
 
     @Test
-    public void item_should_identify_whether_has_gift() {
-        item.setHasGift(true);
-
-        assertThat(item.hasGift(), is(true));
-    }
-
-    @Test
     public void read_discount_config_with_single_discount() {
-        item.setDiscounts("Buy2Give1Discount");
+        item.setDiscountConfig("Buy2Give1Discount");
 
         assertThat(item.getDiscounts().size(), is(1));
         assertThat(item.getDiscounts().get(0), instanceOf(Buy2Give1Discount.class));
@@ -62,7 +55,7 @@ public class ItemTest {
 
     @Test
     public void read_discount_config_with_two_discounts() {
-        item.setDiscounts("Buy2Give1Discount,PercentageDiscount");
+        item.setDiscountConfig("Buy2Give1Discount,PercentageDiscount");
 
         assertThat(item.getDiscounts().size(), is(2));
         assertThat(item.getDiscounts().get(0), instanceOf(Buy2Give1Discount.class));

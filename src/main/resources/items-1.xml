@@ -4,14 +4,14 @@
         <name>可口可乐</name>
         <unit>瓶</unit>
         <price>3.00</price>
-        <hasGift>true</hasGift>
+        <discountConfig>Buy2Give1Discount</discountConfig>
     </item>
     <item>
         <barCode>ITEM000002</barCode>
         <name>羽毛球</name>
         <unit>个</unit>
         <price>1.00</price>
-        <hasGift>true</hasGift>
+        <discountConfig>Buy2Give1Discount</discountConfig>
     </item>
     <item>
         <barCode>ITEM000003</barCode>

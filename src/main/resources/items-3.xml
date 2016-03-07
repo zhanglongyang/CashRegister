@@ -16,6 +16,6 @@
         <name>苹果</name>
         <unit>斤</unit>
         <price>5.50</price>
-        <rate>0.95</rate>
+        <discountConfig>PercentageDiscount</discountConfig>
     </item>
 </items>

@@ -22,7 +22,7 @@ public class ReceiptTest {
 
         items = new ArrayList<>();
         item = new Item("ITEM000001", "可口可乐", "瓶", 3.00);
-        item.setHasGift(true);
+        item.setDiscountConfig("Buy2Give1Discount");
         LineItem cocaCola = new LineItem(item);
         cocaCola.setCount(3);
         items.add(cocaCola);

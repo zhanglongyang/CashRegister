@@ -1,6 +1,8 @@
 package com.thoughtworks.models;
 
+import com.thoughtworks.discounts.Buy2Give1Discount;
 import com.thoughtworks.discounts.Discount;
+import com.thoughtworks.discounts.PercentageDiscount;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,9 +17,6 @@ public class Item {
     private String unit;
     private Double price;
 
-    private Boolean hasGift;
-    private Double rate;
-
     private List<Discount> discounts;
 
     public Item() {
@@ -25,6 +24,8 @@ public class Item {
     }
 
     public Item(String barCode, String name, String unit, Double price) {
+        this();
+
         setBarCode(barCode);
         setName(name);
         setUnit(unit);
@@ -67,43 +68,28 @@ public class Item {
         this.price = price;
     }
 
-    public Boolean hasGift() {
-        if (hasGift == null) {
-            hasGift = false;
-        }
-
-        return hasGift;
-    }
-
-    @XmlElement
-    public void setHasGift(Boolean hasGift) {
-        this.hasGift = hasGift;
-    }
-
     public Boolean hasDiscount() {
-        return getRate() < 1.0;
-    }
-
-    public Double getRate() {
-        if (this.rate == null) {
-            this.rate = 1.0;
+        for (Discount discount : discounts) {
+            if (discount instanceof PercentageDiscount) {
+                return true;
+            }
         }
 
-        return this.rate;
+        return false;
+    }
+
+    public Boolean hasGift() {
+        for (Discount discount : discounts) {
+            if (discount instanceof Buy2Give1Discount) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @XmlElement
-    public void setRate(Double rate) {
-        this.rate = rate;
-    }
-
-    @XmlElement
-    public void setHasGift(String hasGift) {
-        this.hasGift = hasGift != null && hasGift.equals("true") ? true : false;
-    }
-
-    @XmlElement
-    public void setDiscounts(String discountConfig) {
+    public void setDiscountConfig(String discountConfig) {
         String [] discountArray = discountConfig.split(",");
 
         for (String discountStr : discountArray) {

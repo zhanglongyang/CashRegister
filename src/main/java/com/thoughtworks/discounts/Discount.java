@@ -1,7 +1,7 @@
 package com.thoughtworks.discounts;
 
-/**
- * Created by lyzhang on 3/7/16.
- */
+import com.thoughtworks.models.LineItem;
+
 public interface Discount {
+    double subtotal(LineItem item);
 }

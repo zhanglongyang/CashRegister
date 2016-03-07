@@ -40,7 +40,6 @@ public class LineItemTest {
 
     @Test
     public void subtotal_should_be_triple_price_when_count_is_3_and_without_discount_and_gift() {
-        item.setHasGift(false);
         lineItem = new LineItem(item);
 
         lineItem.setCount(3);
@@ -50,7 +49,7 @@ public class LineItemTest {
 
     @Test
     public void subtotal_should_be_double_price_when_count_is_2_and_with_gift() {
-        item.setHasGift(true);
+        item.setDiscountConfig("Buy2Give1Discount");
         lineItem = new LineItem(item);
 
         lineItem.setCount(3);
@@ -60,7 +59,7 @@ public class LineItemTest {
 
     @Test
     public void subtotal_should_be_subtract_discount_when_has_discount() {
-        item.setRate(0.95);
+        item.setDiscountConfig("PercentageDiscount");
         lineItem = new LineItem(item);
 
         lineItem.setCount(2);
@@ -70,7 +69,7 @@ public class LineItemTest {
 
     @Test
     public void gift_should_have_higher_priority_when_both_gift_and_discount() {
-        item.setHasGift(true);
+        item.setDiscountConfig("Buy2Give1Discount");
         lineItem = new LineItem(item);
 
         lineItem.setCount(5);
@@ -88,7 +87,7 @@ public class LineItemTest {
     @Test
     public void should_show_as_payment_list_correctly_when_has_discount() {
         item = new Item("ITEM000002", "苹果", "斤", 5.50);
-        item.setRate(0.95);
+        item.setDiscountConfig("PercentageDiscount");
         lineItem = new LineItem(item);
 
         lineItem.setCount(2);
