@@ -5,6 +5,7 @@
         <unit>瓶</unit>
         <price>3.00</price>
         <hasGift>true</hasGift>
+        <discounts>Buy2Give1Discount</discounts>
     </item>
     <item>
         <barCode>ITEM000002</barCode>
@@ -12,6 +13,7 @@
         <unit>个</unit>
         <price>1.00</price>
         <hasGift>true</hasGift>
+        <discounts>Buy2Give1Discount</discounts>
     </item>
     <item>
         <barCode>ITEM000003</barCode>
