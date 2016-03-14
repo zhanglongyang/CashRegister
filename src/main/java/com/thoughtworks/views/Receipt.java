@@ -1,11 +1,13 @@
 package com.thoughtworks.views;
 
 import com.thoughtworks.models.LineItem;
+import com.thoughtworks.models.MemberCard;
 import com.thoughtworks.utils.PriceFormatter;
 
 import java.util.List;
 
 public class Receipt extends Template {
+    private MemberCard memberCard;
     private List<LineItem> items;
 
     public Receipt() {
@@ -13,6 +15,12 @@ public class Receipt extends Template {
 
     public Receipt(List<LineItem> items) {
         this.items = items;
+    }
+
+    public Receipt(List<LineItem> items, MemberCard memberCard) {
+        this(items);
+
+        this.memberCard = memberCard;
     }
 
     public String lineItemsSection() {
